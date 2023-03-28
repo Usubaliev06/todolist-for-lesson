@@ -1,4 +1,5 @@
 export const TodoItem = ({ id, text, isDone, onToggleTodo }) => {
+  
   const handleToggleTodo = () => {
     onToggleTodo?.(id)
   }
