@@ -1,8 +1,8 @@
 import { TodoItem } from '../todo-item'
 
-export const TodoList = ({ title, items, onToggleTodo }) => {
+export const TodoList = ({ title, items, onToggleTodo,className }) => {
   return (
-    <>
+    <div className={className}>
       <h2>{title}</h2>
       <ul>
         {
@@ -15,6 +15,6 @@ export const TodoList = ({ title, items, onToggleTodo }) => {
           ))
         }
       </ul>
-    </>
+      </div>
   )
 }

@@ -1,17 +1,34 @@
+import styled  from "styled-components"
+
+const TodoContainer = styled.li`
+background-color:gray;
+
+&:hover{
+  color: blue;
+}
+&>input{
+  margin-left:20px;
+}
+`
+const TodoText =styled.span`
+  text-decoration:${(props) => props.isDone ? 'line-through' : 'none'} ;
+`
+
 export const TodoItem = ({ id, text, isDone, onToggleTodo }) => {
-  
+
   const handleToggleTodo = () => {
     onToggleTodo?.(id)
   }
 
   return (
-    <li>
+    
+    <TodoContainer>
       <input
         type="checkbox"
         checked={isDone}
         onChange={handleToggleTodo}
       />
-      <span style={{ textDecoration: isDone ? 'line-through' : 'none' }}>{text}</span>
-    </li>
+      <TodoText isDone={isDone}>{text}</TodoText>
+    </TodoContainer>
   )
 }
