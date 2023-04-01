@@ -1,12 +1,12 @@
 import { useState } from 'react'
 import styled, { createGlobalStyle } from 'styled-components'
 import { TodoList } from './components/todo-list'
-import { startTodolist } from './data'
-import { useTodoList } from './hooks/useTodoList'
-
+import { useSelector } from 'react-redux'
 
 
 function App() {
+
+  const todos = useSelector(state => console.log(state) || state.todo.items)
 
   const GlobalStyle = createGlobalStyle`
 *{  margin:0px;
@@ -47,8 +47,6 @@ ${colors.color}
 }
 padding: 15px;
 `
-
-  const { todos, toggleTodo } = useTodoList(startTodolist)
 
 
   const getOverdueTodos = () => {
@@ -91,33 +89,31 @@ padding: 15px;
 
 
 
-  return (<>
-    <GlobalStyle />
-    <StyledWrapper>
-      <h1>Todo List</h1>
-      <StyledTodoList
-        title="Overdue"
-        items={getOverdueTodos()}
-        onToggleTodo={toggleTodo}
-        style={colors}
-      />
-      <StyledTodoList
-        title="Actual"
-        items={getActualTodos()}
-        onToggleTodo={toggleTodo}
-        style={colors}
+  return (
+    <>
+      <GlobalStyle />
+      <StyledWrapper>
+        <h1>Todo List</h1>
+        <StyledTodoList
+          title="Overdue"
+          items={getOverdueTodos()}
+          style={colors}
+        />
+        <StyledTodoList
+          title="Actual"
+          items={getActualTodos()}
+          style={colors}
 
-      />
-      <StyledTodoList
-        title="Completed"
-        items={getSuccsesfullTodos()}
-        onToggleTodo={toggleTodo}
-        style={colors}
+        />
+        <StyledTodoList
+          title="Completed"
+          items={getSuccsesfullTodos()}
+          style={colors}
 
-      />
-      <button onClick={handleChangeColors}>Change colors</button>
-    </StyledWrapper>
-  </>
+        />
+        <button onClick={handleChangeColors}>Change colors</button>
+      </StyledWrapper>
+    </>
   )
 }
 
