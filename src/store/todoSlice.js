@@ -16,7 +16,16 @@ export const todoSlice = createSlice({
         }
       })
     },
+    addTodo: (state, action) => {
+      state.items.push({
+        ...action.payload,
+        isDone: false,
+        id: state.items.length
+      })
+    }
   }
+
+
 })
 
 export const todoActions = todoSlice.actions
